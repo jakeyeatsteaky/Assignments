@@ -1,28 +1,23 @@
+#ifndef LAB_0_H
+#define LAB_0_H
+
 #include <stdint.h>
+#include <stdio.h>
+typedef enum
+{
+  EDID_VideoInterface = 0,
+  EDID_SAD_AudioFormatCode = 1,
+  EDID_SAD_SuppNumChannels = 2,
+  EDID_SAD_SampleFreq = 3,
+  EDID_SAD_BitDepth = 4
+}eEDID_Attribute;
 
-#if 0 
+extern const unsigned int EDID_BLOCK_SIZE;
 
-Demo: Write a functions that gets the following information from the EDID block:
-1. Video Interface
-2. SAD: Audio Format Code
-3. SAD: Supported Number of channels
-4. SAD: Supported Sample Frequencies
-5. SAD: Supported Bit Depth
+uint8_t parse_edid(uint8_t* block, eEDID_Attribute attribute);
 
-#endif
-
-void parse_edid(uint8_t* block);
-
-#if 0
-
-Demo: Write a functions that will set the following information to the EDID block:
-1. Video Interface = DisplayPort
-2. SAD: Supported Number of channels = 2
-3. SAD: Supported Sample Frequencies = only 48KHz
-4. SAD: Supported Bit Depth = only 24 bit
-
-#endif
+uint8_t get_bits(uint8_t mask, uint8_t bitStartPos, uint8_t value);
 
 void set_edid(uint8_t* block, uint8_t offset, uint8_t set);
 
-
+#endif
